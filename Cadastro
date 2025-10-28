@@ -1,0 +1,93 @@
+# Função para adicionar funcionário
+def adicionar_funcionario(nome, cargo, salario, data_admissao):
+  funcionario = {
+      "nome": nome,
+      "cargo": cargo,
+      "salario": salario,
+      "data_admissao": data_admissao
+  }
+  funcionarios.append(funcionario)
+  print(f"\nFuncionário {nome} adicionado com sucesso!")
+
+# Função para mostrar lista de funcionários
+def listar_funcionarios():
+  if not funcionarios:
+    print("\nNenhum funcionário cadastrado.")
+    return
+
+  print("\n--- Lista de Funcionários ---")
+  print(f"{'Nome':<20} {'Cargo':<20} {'Salário (R$)':<15} {'Data de Admissão'}")
+  print("-" * 70)
+  for f in funcionarios:
+    print(f"{f['nome']:<20} {f['cargo']:<20} {f['salario']:<15.2f} {f['data_admissao']}")
+  print("-" * 70)
+  print(f"Total de funcionários: {len(funcionarios)}")
+
+# Função para buscar funcionário por nome
+def buscar_por_nome():
+  busca = input("\nDigite o nome do funcionário a ser buscado: ").lower().strip()
+  encontrados = []
+  for f in funcionarios:
+    if busca in f["nome"].lower():
+      encontrados.append(f)
+  if not encontrados:
+     print(f"\nNenhum funcionário encontrado com o nome '{busca}'.")
+  else:
+    print(f"\nForam encontrados {len(encontrados)} resultado(s) para '{busca}':")
+    print(f"{'Nome':<20} {'Cargo':<20} {'Salário (R$)':<15} {'Data de Admissão'}")
+    print("-" * 70)
+    for f in encontrados:
+        print(f"{f['nome']:<20} {f['cargo']:<20} {f['salario']:<15.2f} {f['data_admissao']}")
+
+
+# Função para calcular a média salarial
+def calcular_media_salarial():
+  if not funcionarios:
+    print("Nenhum funcionário cadastrado.")
+    return
+
+  total = sum(f["salario"] for f in funcionarios)
+  media = total / len(funcionarios)
+  print(f"\nA média salarial dos funcionários é de R$ {media:.2f}")
+
+# Programa Principal
+funcionarios = [] #Lista para adicionar funcionários cadastrados
+
+# Loop para cadastro de funcionários
+while True:
+  print("\n--- Menu Principal ---")
+  print("1. Adicionar Funcionário")
+  print("2. Listar Funcionários")
+  print("3. Buscar por Nome")
+  print("4. Calcular Média Salarial")
+  print("5. Sair")
+  opcao = input("\nDigite o número da opção desejada: ")
+
+  if opcao == "1":
+    while True:
+      nome = input("Digite o nome do funcionário: ")
+      cargo = input("Digite o cargo do funcionário: ")
+      salario = float(input("Digite o salário do funcionário: "))
+      data_admissao = input("Digite a data de admissão do funcionário (DD/MM/AAAA): ")
+      adicionar_funcionario(nome, cargo, salario, data_admissao)
+      continuar = input("\nDeseja adicionar outro funcionário? (s/n): ").lower().strip()
+      if continuar != "s":
+        break
+    listar_funcionarios()
+
+  elif opcao == "2":
+    listar_funcionarios()
+
+  elif opcao == "3":
+    buscar_por_nome()
+
+  elif opcao == "4":
+    calcular_media_salarial()
+
+  elif opcao == "5":
+    print("\nSaindo do programa...")
+    print("Encerrado com sucesso! Obrigado por usar nossos serviços.")
+    break
+
+  else:
+    print("Opção inválida! Tente novamente.")
