@@ -53,6 +53,11 @@ def calcular_media_salarial():
 # Programa Principal
 funcionarios = [] #Lista para adicionar funcionários cadastrados
 
+# Funcionários adicionados manualmente
+adicionar_funcionario("Julia Souza", "Desenvolvedor", 5000.00, "15/02/2020")
+adicionar_funcionario("Lucas Octávio", "Analista", 7000.00, "23/05/2010")
+adicionar_funcionario("Rômulo Cândido", "Gerente", 8000.00, "02/11/2005")
+
 # Loop para cadastro de funcionários
 while True:
   print("\n--- Menu Principal ---")
